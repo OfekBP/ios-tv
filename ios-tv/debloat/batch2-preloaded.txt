@@ -1,0 +1,13 @@
+# Batch 2: preloaded apps, voice, screensaver, tts (user said no voice assistant)
+com.google.android.videos
+com.google.android.play.games
+com.google.android.music
+com.android.printspooler
+com.google.android.katniss
+com.google.android.speech.pumpkin
+com.google.android.backdrop
+com.google.android.tts
+com.google.android.marvin.talkback
+com.android.gallery3d
+com.android.wallpaper.livepicker
+com.android.dreams.basic

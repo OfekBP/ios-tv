@@ -1,0 +1,2 @@
+Previous keyboard: com.tcl.inputmethod.international/.T_IME (still installed).
+Use another keyboard: Settings > Device Preferences > Keyboard, or: tools/tv.py "ime set <id>"

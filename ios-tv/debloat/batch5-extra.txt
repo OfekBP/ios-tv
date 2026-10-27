@@ -1,0 +1,7 @@
+# Batch 5: backup/companion services nobody uses on this TV
+com.google.android.backuptransport
+com.android.wallpaperbackup
+com.android.sharedstoragebackup
+com.android.backupconfirm
+com.android.companiondevicemanager
+com.android.htmlviewer

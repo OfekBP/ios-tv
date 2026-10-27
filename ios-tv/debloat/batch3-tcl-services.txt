@@ -1,0 +1,5 @@
+# Batch 3: TCL helper services that start at boot
+com.tcl.copydatatotv
+com.tcl.common.terminalmanagerplus
+com.tcl.appclean
+com.google.android.tvtutorials
