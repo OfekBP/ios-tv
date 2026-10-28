@@ -11,7 +11,7 @@ Everything below works with the remote only. You don't need the computer or me f
 | See app info / clear data / uninstall your own apps | **Hold OK** on an app, choose **App info** |
 | Add any installed app to Home | Press **Up** to the top buttons, choose the **grid button**, press **OK** on an app ("Add to Home") |
 | Switch to HDMI / Live TV | Top button **Inputs** (the remote's Input button works too) |
-| Wi-Fi | Top button **Wi-Fi** |
+| Wi-Fi | Settings (gear) > Network |
 | TV settings (picture, sound, network, apps) | Top button **gear**. **Hold OK** on the gear for the launcher menu: Reorder apps, Launcher settings |
 
 ## Night mode (bedside clock)
@@ -45,3 +45,7 @@ Changing the wallpaper or the look is done from the PC folder `C:\cytv`:
 - Removed TCL apps (Media Center, T-Channel): see `work\removed-apps.txt`
 - TCL keyboard: see `work\keyboard-undo.txt`
 - A full backup of the original package list and settings is in `backup\`
+
+## Troubleshooting
+- **Netflix says "make sure device connectivity and the date and time settings are accurate"**: usually Netflix is too old (the TV ships a 2019 copy) and it cannot verify its server's certificate. Open Google Play > Netflix > **Update**. (After a factory reset the old copy comes back.)
+- **Clock shows 12-hour time**: the big clock follows Settings > Device Preferences > Date & time > **Use 24-hour format**.

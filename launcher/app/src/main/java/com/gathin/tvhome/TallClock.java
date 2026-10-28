@@ -65,8 +65,10 @@ public final class TallClock extends View {
         Calendar now = Calendar.getInstance();
         int h = now.get(Calendar.HOUR_OF_DAY);
         int m = now.get(Calendar.MINUTE);
-        int h12 = h % 12 == 0 ? 12 : h % 12;
-        String nextHours = String.format(Locale.US, "%d", h12);
+        // The TV's own 12/24 hour setting (Settings > Date & time > Use 24-hour format).
+        boolean h24 = android.text.format.DateFormat.is24HourFormat(getContext());
+        int shown = h24 ? h : (h % 12 == 0 ? 12 : h % 12);
+        String nextHours = h24 ? String.format(Locale.US, "%02d", shown) : String.format(Locale.US, "%d", shown);
         String nextMinutes = String.format(Locale.US, "%02d", m);
         if (!nextHours.equals(hours) || !nextMinutes.equals(minutes)) {
             hours = nextHours;

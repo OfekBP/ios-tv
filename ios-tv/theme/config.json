@@ -41,5 +41,6 @@
   "clock_glow": false,
   "home_idle_clock_minutes": 10,
   "tile_menu": true,
-  "restore_key_services": true
+  "restore_key_services": true,
+  "show_network_pill": false
 }
