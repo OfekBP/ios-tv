@@ -961,6 +961,7 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
     @Override
     protected void onResume() {
         useGlassKeyboard();
+        useGlassScreensaver();
         super.onResume();
         // A festival that started or ended while Home was in the background: rebuild with or without it.
         if (festive != festival.active(LocalDate.now())) {
@@ -1295,6 +1296,22 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
             android.provider.Settings.Secure.putString(cr, android.provider.Settings.Secure.DEFAULT_INPUT_METHOD, ours);
         } catch (RuntimeException notAllowed) {
             // Without WRITE_SECURE_SETTINGS the TV simply keeps its own keyboard.
+        }
+    }
+
+    /** The screensaver in Home's design replaces the older clock one; a screensaver the owner picked is left alone. */
+    private void useGlassScreensaver() {
+        try {
+            String ours = new android.content.ComponentName(this, GlassDream.class).flattenToShortString();
+            String old = new android.content.ComponentName(this, ClockDream.class).flattenToShortString();
+            android.content.ContentResolver cr = getContentResolver();
+            String current = android.provider.Settings.Secure.getString(cr, "screensaver_components");
+            if (current == null || current.isEmpty() || current.equals(old)) {
+                android.provider.Settings.Secure.putString(cr, "screensaver_components", ours);
+                android.provider.Settings.Secure.putInt(cr, "screensaver_enabled", 1);
+            }
+        } catch (RuntimeException notAllowed) {
+            // Without WRITE_SECURE_SETTINGS the screensaver stays as it was.
         }
     }
 

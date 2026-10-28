@@ -154,4 +154,5 @@
     <string name="last_opened">Last opened %1$s</string>
     <string name="ime_name" translatable="false">Glass Keyboard</string>
     <string name="night_mode">Night mode</string>
+    <string name="glass_dream_name" translatable="false">Glass clock</string>
 </resources>

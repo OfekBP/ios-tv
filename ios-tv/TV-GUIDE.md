@@ -29,7 +29,7 @@ Press **Home**. The launcher restarts its helpers by itself (Home key, redirect 
 The apps (Netflix, YES+, YouTube, BrowseHere, Play Store, Downloader) are pre-compiled, so they open much faster (Netflix went from 56 s to under 2 s cold). If an app is slow after a big Play Store update, it recompiles itself in the background.
 
 ## Screensaver
-After 10 minutes on Home the screen shows the big clock over your wallpaper. Any key returns.
+After 5 minutes idle (Settings > Device Preferences > Screen saver > Start now after) the TV shows the Home wallpaper with the date above the big clock, no apps or buttons. It drifts a few pixels each minute. **Any button wakes it** (OK, Back, arrows, Menu, Home, ...). Volume keys only change the volume. To change the delay or turn it off, use the same Settings screen.
 
 ## Installing apps
 Open **Google Play** from Home. After installing, add the app with the grid button.

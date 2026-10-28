@@ -39,7 +39,7 @@
   "clock_wallpaper": true,
   "clock_wallpaper_dim": 40,
   "clock_glow": false,
-  "home_idle_clock_minutes": 10,
+  "home_idle_clock_minutes": 0,
   "tile_menu": true,
   "restore_key_services": true,
   "show_network_pill": false

@@ -208,6 +208,18 @@
             </intent-filter>
         </service>
 
+        <!-- The screensaver in Home's design: wallpaper, the date and the big glass clock. -->
+        <service
+            android:name=".GlassDream"
+            android:label="@string/glass_dream_name"
+            android:exported="true"
+            android:permission="android.permission.BIND_DREAM_SERVICE">
+            <intent-filter>
+                <action android:name="android.service.dreams.DreamService" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </service>
+
         <!-- tools/theme.sh writes the theme through this where the shell can't reach Android/data;
              see ThemeProvider. WRITE_SECURE_SETTINGS: the adb shell has it, ordinary apps don't. -->
         <provider
