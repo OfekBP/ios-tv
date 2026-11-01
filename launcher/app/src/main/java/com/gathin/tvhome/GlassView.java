@@ -29,6 +29,12 @@ public class GlassView extends View {
     /** glass_style rim or halo: no sheen and no fill, only the crisp rim (and, for halo, a lighter outer glow). */
     private boolean flat;
     private boolean halo;
+    /** A soft band of light that glides across the tile when focus lands (see sweep()). */
+    private final Paint shine = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private final android.graphics.Matrix shineMatrix = new android.graphics.Matrix();
+    private LinearGradient shineShader;
+    private float shinePos = 2f;   // 0 = just left of the tile, 1 = just past its right edge; outside 0..1 nothing is drawn
+    private android.animation.ValueAnimator shineAnim;
 
     public GlassView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -69,6 +75,26 @@ public class GlassView extends View {
         invalidate();
     }
 
+    /** Runs the light sweep once. Cheap: one gradient band over a small layer, a few frames. */
+    void sweep() {
+        if (shineAnim != null) shineAnim.cancel();
+        shineAnim = android.animation.ValueAnimator.ofFloat(0f, 1f);
+        shineAnim.setDuration(420);
+        shineAnim.setInterpolator(new android.view.animation.DecelerateInterpolator(1.4f));
+        shineAnim.addUpdateListener(a -> {
+            shinePos = (float) a.getAnimatedValue();
+            invalidate();
+        });
+        shineAnim.addListener(new android.animation.AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(android.animation.Animator animation) {
+                shinePos = 2f;
+                invalidate();
+            }
+        });
+        shineAnim.start();
+    }
+
     void setRadius(float px) {
         radius = px;
         invalidate();
@@ -79,6 +105,10 @@ public class GlassView extends View {
         super.onSizeChanged(w, h, oldw, oldh);
         fill.setShader(new LinearGradient(0, 0, 0, h, 0x3DFFFFFF, 0x12FFFFFF, Shader.TileMode.CLAMP));
         specular.setShader(new LinearGradient(0, 0, 0, h * 0.45f, 0x66FFFFFF, 0x00FFFFFF, Shader.TileMode.CLAMP));
+        float band = w * 0.45f;
+        shineShader = new LinearGradient(0, 0, band, 0, new int[]{0x00FFFFFF, 0x59FFFFFF, 0x00FFFFFF},
+                new float[]{0f, 0.5f, 1f}, Shader.TileMode.CLAMP);
+        shine.setShader(shineShader);
     }
 
     @Override
@@ -103,6 +133,7 @@ public class GlassView extends View {
         }
         if (flat) {
             canvas.drawRoundRect(rect, radius, radius, rim);
+            drawShine(canvas);
             return;
         }
 
@@ -116,5 +147,13 @@ public class GlassView extends View {
         canvas.restore();
 
         canvas.drawRoundRect(rect, radius, radius, rim);
+    }
+
+    private void drawShine(Canvas canvas) {
+        if (shinePos < 0f || shinePos > 1f || shineShader == null) return;
+        float band = getWidth() * 0.45f;
+        shineMatrix.setTranslate(rect.left - band + shinePos * (rect.width() + band), 0f);
+        shineShader.setLocalMatrix(shineMatrix);
+        canvas.drawRoundRect(rect, radius, radius, shine);
     }
 }

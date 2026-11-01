@@ -13,7 +13,6 @@
   "single_row": true,
   "dock_band": false,
   "dock_title": false,
-  "cinematic_home": false,
   "app_glow": false,
   "glass_style": "rim",
   "icon_only_buttons": true,
@@ -55,5 +54,9 @@
     "night": [
       "03-night.jpg"
     ]
-  }
+  },
+  "settings_key_panel": true,
+  "settings_key_keycodes": [
+    176
+  ]
 }

@@ -49,6 +49,8 @@ import java.util.Set;
  * (by label), the rest is alphabetical.
  */
 public class AppAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    /** The tile that had focus before the current one, for the direction of the focus tilt. */
+    private static int lastFocusedPosition = -1;
 
     interface TileListener {
         void onTileFocused(int position, View card);
@@ -944,6 +946,17 @@ public class AppAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 name.animate().cancel();
                 float scale = !animations ? 1f : advancedEffects ? 1.26f : 1.18f;
                 float s = focused ? scale : 1f;
+                // A small tilt toward the way focus came from, settling as the tile grows (tvOS parallax feel).
+                int posNow = getBindingAdapterPosition();
+                if (focused && animations && !reducedMotion && posNow != RecyclerView.NO_POSITION) {
+                    int dir = Integer.compare(posNow, lastFocusedPosition);
+                    lastFocusedPosition = posNow;
+                    if (dir != 0 && lastFocusedPosition >= 0) {
+                        view.setCameraDistance(9000f * density);
+                        view.setRotationY(dir * 5f);
+                        view.animate().rotationY(0f).setDuration(300).start();
+                    }
+                }
                 if (!animations) {
                     view.setScaleX(1f);
                     view.setScaleY(1f);

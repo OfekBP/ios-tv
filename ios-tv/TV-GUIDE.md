@@ -12,10 +12,10 @@ Everything below works with the remote only. You don't need the computer or me f
 | Add any installed app to Home | Press **Up** to the top buttons, choose the **grid button**, press **OK** on an app ("Add to Home") |
 | Switch to HDMI / Live TV | Top button **Inputs** (the remote's Input button works too) |
 | Wi-Fi | Settings (gear) > Network |
-| TV settings (picture, sound, network, apps) | Top button **gear**. **Hold OK** on the gear for the launcher menu: Reorder apps, Launcher settings |
+| TV settings (picture, sound, network, apps) | Top button **gear**, or the remote's own **Settings** button for a glass panel (Night mode, TV settings, Display, Network, Apps, Launcher settings). **Hold OK** on the gear for the launcher menu: Reorder apps, Launcher settings |
 
 ## Night mode (bedside clock)
-Top button **moon** (left of the gear): the screen turns black with only a very dim tall clock. **Up / Down** make it brighter or dimmer (remembered). Any other button goes back to Home. The clock drifts a few pixels each minute and the TV stays on. The TV's backlight can't be switched off from an app, so use the TV's own backlight setting for the lowest light.
+Top button **moon** (left of the gear): the screen turns black with only a very dim tall clock. **Up / Down** make it brighter or dimmer (remembered). The clock fades in slowly. **Left / Right** choose a wake-up time (off, 06:00-09:00) at which the TV returns to Home by itself. Any other button goes back to Home. The clock drifts a few pixels each minute and the TV stays on. The TV's backlight can't be switched off from an app, so use the TV's own backlight setting for the lowest light.
 
 ## Keyboard
 A glass keyboard replaces the TCL one. Arrows move, **OK** presses a key, **Back** closes it. The number keys on the remote type digits, Delete deletes.
@@ -30,6 +30,9 @@ The apps (Netflix, YES+, YouTube, BrowseHere, Play Store, Downloader) are pre-co
 
 ## Wallpaper by time of day
 The wallpaper changes by itself: sunrise colours in the morning, warm dusk in the evening, deep blue at night (switch times are for about Tel Aviv: 07:00 / sunset). The glass buttons and the screensaver follow the picture. The three pictures are in `ios-tv/theme/wallpapers/`.
+
+## Focus
+The focused app grows, gets a white frame, a soft light sweep and a small tilt toward the direction you came from. Opening an app has a quick press dip. These switch off with Launcher settings > reduced motion.
 
 ## Screensaver
 After 5 minutes idle (Settings > Device Preferences > Screen saver > Start now after) the TV shows the Home wallpaper with the date above the big clock, no apps or buttons. It drifts a few pixels each minute. **Any button wakes it** (OK, Back, arrows, Menu, Home, ...). Volume keys only change the volume. To change the delay or turn it off, use the same Settings screen.

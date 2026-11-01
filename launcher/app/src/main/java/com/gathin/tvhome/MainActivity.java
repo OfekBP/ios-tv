@@ -748,7 +748,10 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
         showInputsMenuRow = cfg.showInputsPill;
         btnLibraryTop = findViewById(R.id.btnLibraryTop);
         btnNight = findViewById(R.id.btnNight);
-        btnNight.setOnClickListener(v -> startActivity(new Intent(this, NightModeActivity.class)));
+        btnNight.setOnClickListener(v -> {
+            startActivity(new Intent(this, NightModeActivity.class));
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        });
         btnLibraryTop.setOnClickListener(v -> {
             onLibraryRequested();
             libraryFromTopBar = true;   // closing it goes back to this button, not to the pill after the last row
@@ -1752,6 +1755,7 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
         glassCardW = card.getWidth();
         glassTargetX = x;
         glassTargetY = y;
+        if (animations && !reducedMotion && glassShown) glass.sweep();
         // Cinematic shelf: the highlight glows in the dock app's colour, plain white in the grid (and on the dock with
         // cinematic_white_focus). app_glow: every tile. In a single row every tile is the dock's kind.
         boolean coloured = (appGlow || cinematic && !cinematicWhiteFocus && (singleRow || position < COLUMNS)) && !festive;
