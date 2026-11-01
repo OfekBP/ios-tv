@@ -53,8 +53,8 @@ public class GlassDream extends DreamService {
         root.setBackgroundColor(Color.BLACK);
 
         Config cfg = Config.load(this);
-        File file = cfg.wallpaper != null ? cfg.wallpaper : (cfg.wallpapers.isEmpty() ? null : cfg.wallpapers.get(0));
-        if (cfg.wallpaperEnabled && file != null && file.exists()) {
+        File file = Frost.shown(this, cfg);
+        if (file != null) {
             BitmapFactory.Options o = new BitmapFactory.Options();
             o.inPreferredConfig = Bitmap.Config.RGB_565;
             picture = BitmapFactory.decodeFile(file.getPath(), o);

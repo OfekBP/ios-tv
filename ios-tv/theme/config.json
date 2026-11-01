@@ -42,5 +42,18 @@
   "home_idle_clock_minutes": 0,
   "tile_menu": true,
   "restore_key_services": true,
-  "show_network_pill": false
+  "show_network_pill": false,
+  "wallpaper_rotation_minutes": 30,
+  "wallpaper_order": "sequential",
+  "wallpaper_moods": {
+    "morning": [
+      "01-morning.jpg"
+    ],
+    "evening": [
+      "02-evening.jpg"
+    ],
+    "night": [
+      "03-night.jpg"
+    ]
+  }
 }

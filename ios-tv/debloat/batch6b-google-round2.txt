@@ -1,0 +1,9 @@
+# Batch 6b (round 2): Google setup helpers and unused data stores
+# Kept on purpose: com.google.android.gsf.notouch (the "add Google account" screen), the setup wizard, Play Store, GMS
+# Undo: tools/restore.sh ios-tv/debloat/batch6b-google-round2.txt
+com.google.android.sss
+com.google.android.sss.authbridge
+com.google.android.onetimeinitializer
+com.google.android.partnersetup
+com.android.providers.calendar
+com.android.providers.contacts

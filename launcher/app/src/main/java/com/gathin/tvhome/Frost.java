@@ -14,6 +14,18 @@ import android.graphics.Paint;
 final class Frost {
     /** The blurred wallpaper copy the glass surfaces share (set by the launcher at start; null before or without a wallpaper). */
     static Bitmap shared;
+    /** Name of the wallpaper the glass was last built from, so it is only rebuilt when the picture changes. */
+    static String sharedName = "";
+
+    /** The wallpaper Home is showing now (the rotation records it), else the theme's single one, else the first of the collection. */
+    static java.io.File shown(android.content.Context context, Config cfg) {
+        if (!cfg.wallpaperEnabled) return null;
+        String name = context.getSharedPreferences("wallpaper_rotation", android.content.Context.MODE_PRIVATE).getString("image", "");
+        for (java.io.File f : cfg.wallpapers) if (f.getName().equals(name) && f.exists()) return f;
+        if (cfg.wallpaper != null && cfg.wallpaper.exists()) return cfg.wallpaper;
+        return cfg.wallpapers.isEmpty() ? null : cfg.wallpapers.get(0);
+    }
+
     static final int WIDTH = 160;
     static final int HEIGHT = 90;
 

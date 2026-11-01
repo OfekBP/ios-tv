@@ -505,7 +505,21 @@ public class AppAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             h.label.setText(e.label);
             h.label.setVisibility(uniformTiles ? View.GONE : View.VISIBLE);
         }
-        h.card.setOnClickListener(v -> launch(e));
+        h.card.setOnClickListener(v -> {
+            if (!animations || reducedMotion) {
+                launch(e);
+                return;
+            }
+            // tvOS answers a click with a quick dip, the app opening as the tile springs back.
+            float s = v.getScaleX();
+            v.animate().cancel();
+            v.animate().scaleX(s * 0.95f).scaleY(s * 0.95f).setDuration(70)
+                    .setInterpolator(new DecelerateInterpolator())
+                    .withEndAction(() -> {
+                        v.animate().scaleX(s).scaleY(s).setDuration(150).start();
+                        launch(e);
+                    }).start();
+        });
         h.card.setOnLongClickListener(v -> {
             if (tileMenu) {
                 int pos = h.getBindingAdapterPosition();

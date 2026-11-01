@@ -28,6 +28,9 @@ Press **Home**. The launcher restarts its helpers by itself (Home key, redirect 
 ## Speed
 The apps (Netflix, YES+, YouTube, BrowseHere, Play Store, Downloader) are pre-compiled, so they open much faster (Netflix went from 56 s to under 2 s cold). If an app is slow after a big Play Store update, it recompiles itself in the background.
 
+## Wallpaper by time of day
+The wallpaper changes by itself: sunrise colours in the morning, warm dusk in the evening, deep blue at night (switch times are for about Tel Aviv: 07:00 / sunset). The glass buttons and the screensaver follow the picture. The three pictures are in `ios-tv/theme/wallpapers/`.
+
 ## Screensaver
 After 5 minutes idle (Settings > Device Preferences > Screen saver > Start now after) the TV shows the Home wallpaper with the date above the big clock, no apps or buttons. It drifts a few pixels each minute. **Any button wakes it** (OK, Back, arrows, Menu, Home, ...). Volume keys only change the volume. To change the delay or turn it off, use the same Settings screen.
 
@@ -47,5 +50,6 @@ Changing the wallpaper or the look is done from the PC folder `C:\cytv`:
 - A full backup of the original package list and settings is in `backup\`
 
 ## Troubleshooting
+- **Home shows a "choose a launcher" box**: TCL turns its own launcher back on at every start. Fix with `ios-tv/scripts/fix-home.sh` (needs USB debugging): it saves our launcher as the default while TCL's is enabled.
 - **Netflix says "make sure device connectivity and the date and time settings are accurate"**: usually Netflix is too old (the TV ships a 2019 copy) and it cannot verify its server's certificate. Open Google Play > Netflix > **Update**. (After a factory reset the old copy comes back.)
 - **Clock shows 12-hour time**: the big clock follows Settings > Device Preferences > Date & time > **Use 24-hour format**.

@@ -1,0 +1,6 @@
+# Batch 6a (round 2): TCL USB media players (owner does not use them) and the electronic-policy screen
+# Undo: tools/restore.sh ios-tv/debloat/batch6a-tcl-round2.txt
+com.tcl.audioplayer
+com.tcl.imageplayer
+com.tcl.videoplayer
+com.tcl.eletronicpolicy

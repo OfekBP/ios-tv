@@ -963,6 +963,7 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
         useGlassKeyboard();
         useGlassScreensaver();
         super.onResume();
+        if (getResources().getBoolean(R.bool.liquid_glass)) getWindow().getDecorView().postDelayed(() -> { if (!isDestroyed()) liquidGlassPills(Config.load(this)); }, 1500);
         // A festival that started or ended while Home was in the background: rebuild with or without it.
         if (festive != festival.active(LocalDate.now())) {
             recreate();
@@ -1319,14 +1320,18 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
     private void liquidGlassPills(Config cfg) {
         android.util.DisplayMetrics screen = getResources().getDisplayMetrics();
         Bitmap frost = null;
-        File picture = cfg.wallpaper != null ? cfg.wallpaper : (cfg.wallpapers.isEmpty() ? null : cfg.wallpapers.get(0));
-        if (cfg.wallpaperEnabled && picture != null && picture.exists()) {
+        File picture = Frost.shown(this, cfg);
+        if (picture != null && picture.getName().equals(Frost.sharedName) && Frost.shared != null) {
+            frost = Frost.shared;   // same picture as last time: reuse the blurred copy
+            glassFrost = frost;
+        } else if (picture != null) {
             android.graphics.BitmapFactory.Options o = new android.graphics.BitmapFactory.Options();
             o.inSampleSize = 8;
             Bitmap small = android.graphics.BitmapFactory.decodeFile(picture.getPath(), o);
             frost = Frost.of(small);
             glassFrost = frost;
             Frost.shared = frost;
+            Frost.sharedName = picture.getName();
             if (small != null) small.recycle();
         }
         int[] ids = {R.id.btnInputs, R.id.btnWifi, R.id.btnLibraryTop, R.id.btnNight, R.id.btnSettings};
